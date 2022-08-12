@@ -16,9 +16,9 @@ import { UserEntity } from "./user.entity";
             UserEntity,
             TaskEntity,
             StatusEntity
-        ]
-
-
+        ],
+        database: 'task-management-system',
+        synchronize: true
     })
   ],
   controllers: [],
