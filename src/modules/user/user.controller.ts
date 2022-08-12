@@ -24,4 +24,12 @@ export class UserController {
         return newUser;
     }
 
+    @Post('/signin')
+    async signIn(
+        @Body() userData: CreateUserDto
+    ) {
+        const user = await this.userService.signIn(userData);
+        return user;
+    }
+
 }

@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UserEntity } from "./user.entity";
 
@@ -20,5 +20,17 @@ export class UserService {
         newUser.password = password
         await newUser.save();
         return newUser;
+    }
+
+    async signIn(userData: CreateUserDto) {
+        const {
+            username,
+            password
+        } = userData;
+        const user = await UserEntity.findOne({where: {username, password}});
+        if(!user) {
+            throw new UnauthorizedException();
+        }
+        return user;
     }
 }
