@@ -1,6 +1,7 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UserEntity } from "./user.entity";
+import * as bcrypt from "bcrypt";
 
 @Injectable()
 export class UserService {
@@ -15,9 +16,11 @@ export class UserService {
             username,
             password
         } = newUserData
-        const newUser = new UserEntity();
+
+        const hashedPassword = bcrypt.hashSync(password, 10);
+        const newUser = UserEntity.create();
         newUser.username = username;
-        newUser.password = password
+        newUser.password = hashedPassword
         await newUser.save();
         return newUser;
     }
