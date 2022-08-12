@@ -3,9 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './modules/user/user.entity';
 import { TaskEntity } from './modules/task/task.entity';
 import { StatusEntity } from './modules/status/status.entity';
+import { UserModule } from './modules/user/user.module';
 
 @Module({
   imports: [
+    UserModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
