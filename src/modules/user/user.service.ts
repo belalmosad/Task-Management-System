@@ -6,7 +6,7 @@ import { UserEntity } from "./user.entity";
 export class UserService {
 
     async findAll() {
-        const users = await UserEntity.find();
+        const users = await UserEntity.find({relations: ["tasks"]});
         return users
     }
 
