@@ -6,9 +6,11 @@ import { StatusEntity } from './modules/status/status.entity';
 import { UserModule } from './modules/user/user.module';
 import { ConfigModule } from "@nestjs/config"
 import { PrintRequests } from './middlewares/print-requests.middleware';
+import { TaskModule } from './modules/task/task.module';
 @Module({
   imports: [
     UserModule,
+    TaskModule,
     ConfigModule.forRoot({
       isGlobal: true
     }),
