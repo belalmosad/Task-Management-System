@@ -39,6 +39,10 @@ export class UserService {
         if(!user) {
             throw new UnauthorizedException();
         }
+        const isCorrectPassword = bcrypt.compareSync(password, user.password);
+        if(!isCorrectPassword) {
+            throw new UnauthorizedException();
+        }
         return user;
     }
 }
