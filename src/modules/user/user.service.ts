@@ -10,7 +10,7 @@ export class UserService {
         return users
     }
 
-    async addOne(newUserData: CreateUserDto) {
+    async signUp(newUserData: CreateUserDto) {
         const {
             username,
             password

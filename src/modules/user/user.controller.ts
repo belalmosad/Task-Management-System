@@ -17,10 +17,10 @@ export class UserController {
     }
 
     @Post()
-    async addOne(
+    async signUp(
         @Body() createUserDto: CreateUserDto
     ) {
-        const newUser = await this.userService.addOne(createUserDto);
+        const newUser = await this.userService.signUp(createUserDto);
         return newUser;
     }
 
