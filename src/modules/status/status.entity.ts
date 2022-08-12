@@ -1,6 +1,6 @@
 import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('task')
+@Entity('status')
 export class StatusEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
