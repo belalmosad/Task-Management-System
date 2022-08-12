@@ -16,7 +16,7 @@ export class UserController {
         return users;
     }
 
-    @Post()
+    @Post('/signup')
     async signUp(
         @Body() createUserDto: CreateUserDto
     ) {
