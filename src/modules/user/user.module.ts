@@ -5,22 +5,7 @@ import { TaskEntity } from "../task/task.entity";
 import { UserEntity } from "./user.entity";
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-        type: 'postgres',
-        host: 'localhost',
-        port: 3000,
-        username: 'postgres',
-        password: '123',
-        entities: [
-            UserEntity,
-            TaskEntity,
-            StatusEntity
-        ],
-        database: 'task-management-system',
-        synchronize: true
-    })
-  ],
+  imports: [],
   controllers: [],
   providers: [],
   exports: [],
