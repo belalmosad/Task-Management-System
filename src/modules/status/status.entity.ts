@@ -9,7 +9,8 @@ export class StatusEntity extends BaseEntity {
         nullable: false,
         type: "varchar",
         length: 20,
-        default: 'Pending'
+        default: 'Pending',
+        enum: ['Pending', 'Completed']
     })
     title: string
 }
