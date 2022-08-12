@@ -1,7 +1,26 @@
 import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { StatusEntity } from "../status/status.entity";
+import { TaskEntity } from "../task/task.entity";
+import { UserEntity } from "./user.entity";
 
 @Module({
-  imports: [],
+  imports: [
+    TypeOrmModule.forRoot({
+        type: 'postgres',
+        host: 'localhost',
+        port: 3000,
+        username: 'postgres',
+        password: '123',
+        entities: [
+            UserEntity,
+            TaskEntity,
+            StatusEntity
+        ]
+
+
+    })
+  ],
   controllers: [],
   providers: [],
   exports: [],
