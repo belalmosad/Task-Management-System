@@ -4,22 +4,25 @@ import { UserEntity } from './modules/user/user.entity';
 import { TaskEntity } from './modules/task/task.entity';
 import { StatusEntity } from './modules/status/status.entity';
 import { UserModule } from './modules/user/user.module';
-
+import {ConfigModule} from "@nestjs/config"
 @Module({
   imports: [
     UserModule,
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '123',
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.USERNAME,
+      password: process.env.DB_PASSWORD,
       entities: [
         UserEntity,
         TaskEntity,
         StatusEntity
       ],
-      database: 'task-management-system',
+      database: process.env.DB_NAME,
       synchronize: true
     })
   ],
