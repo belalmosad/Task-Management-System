@@ -1,10 +1,11 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './modules/user/user.entity';
 import { TaskEntity } from './modules/task/task.entity';
 import { StatusEntity } from './modules/status/status.entity';
 import { UserModule } from './modules/user/user.module';
-import {ConfigModule} from "@nestjs/config"
+import { ConfigModule } from "@nestjs/config"
+import { PrintRequests } from './middlewares/print-requests.middleware';
 @Module({
   imports: [
     UserModule,
@@ -29,4 +30,10 @@ import {ConfigModule} from "@nestjs/config"
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(PrintRequests)
+      .forRoutes('/');
+  }
+}
