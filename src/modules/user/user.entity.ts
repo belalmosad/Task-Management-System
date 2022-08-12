@@ -22,7 +22,8 @@ export class UserEntity extends BaseEntity {
 
     @OneToMany(() => TaskEntity, taskEntity => taskEntity.user)
     @Column("int", {
-        array: true
+        array: true,
+        nullable: true
     })
     tasks: TaskEntity[];
 }
