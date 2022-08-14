@@ -16,7 +16,7 @@ export class TaskEntity extends BaseEntity {
     @ManyToOne(() => UserEntity, userEntity => userEntity.tasks)
     user: UserEntity
 
-    @OneToOne(() => StatusEntity, statusEntity => statusEntity.id)
+    @ManyToOne(() => StatusEntity, statusEntity => statusEntity.id)
     @JoinColumn()
     status: StatusEntity
 }
