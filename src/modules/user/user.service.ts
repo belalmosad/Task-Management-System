@@ -7,7 +7,7 @@ import * as bcrypt from "bcrypt";
 export class UserService {
 
     async findAll() {
-        const users = await UserEntity.find({relations: ["tasks"]});
+        const users = await UserEntity.find({ relations: ["tasks"] });
         return users
     }
 
@@ -17,8 +17,8 @@ export class UserService {
             password
         } = newUserData
 
-        const user = await UserEntity.findOne({where: {username}});
-        if(user) {
+        const user = await UserEntity.findOne({ where: { username } });
+        if (user) {
             throw new BadRequestException('Username is already used');
         }
 
@@ -35,12 +35,12 @@ export class UserService {
             username,
             password
         } = userData;
-        const user = await UserEntity.findOne({where: {username, password}});
-        if(!user) {
+        const user = await UserEntity.findOne({ where: { username } });
+        if (!user) {
             throw new UnauthorizedException();
         }
         const isCorrectPassword = bcrypt.compareSync(password, user.password);
-        if(!isCorrectPassword) {
+        if (!isCorrectPassword) {
             throw new UnauthorizedException();
         }
         return user;
