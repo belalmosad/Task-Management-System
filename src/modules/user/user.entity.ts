@@ -16,7 +16,6 @@ export class UserEntity extends BaseEntity {
 
     @Column({
         nullable: false,
-        select: false
     })
     password: string;
 
